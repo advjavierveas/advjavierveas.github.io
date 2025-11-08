@@ -1,117 +1,214 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comandos de Git y GitHub</title>
-    <style>
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            margin: 40px;
-        }
-        h1, h2 {
-            color: #0052cc;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 30px;
-            background-color: #fff;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px 15px;
-            text-align: left;
-        }
-        th {
-            background-color: #e1ecf4;
-            color: #003366;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        code {
-            background-color: #eee;
-            padding: 2px 5px;
-            border-radius: 4px;
-            font-family: Consolas, monospace;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guía de Comandos (Git, Terminal, y más)</title>
+  <style>
+    :root {
+      --primary: #0052cc;
+      --primary-dark: #003d99;
+      --bg: #f5f5f5;
+      --table-bg: #fff;
+      --code-bg: #eee;
+      --text: #333;
+      --border: #ccc;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      color: var(--primary);
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px auto;
+      background-color: var(--table-bg);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 15px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      background-color: #e1ecf4;
+      color: var(--primary-dark);
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    code {
+      background-color: var(--code-bg);
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      font-size: 0.9em;
+      display: inline-block;
+      word-break: break-word;
+    }
+
+    .copy-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin-left: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85em;
+      transition: background 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+      }
+      thead {
+        display: none;
+      }
+      tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background-color: white;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      }
+      td {
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+      }
+      td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: var(--primary-dark);
+        margin-right: 10px;
+        flex: 1;
+      }
+      code {
+        width: 100%;
+        word-break: break-all;
+      }
+      .copy-btn {
+        margin-top: 5px;
+        width: 100%;
+      }
+    }
+
+    /* --- Toast Message --- */
+    .toast {
+      visibility: hidden;
+      min-width: 200px;
+      background-color: var(--primary-dark);
+      color: #fff;
+      text-align: center;
+      border-radius: 5px;
+      padding: 10px;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      font-size: 0.95em;
+      opacity: 0;
+      transition: opacity 0.4s, bottom 0.4s;
+    }
+
+    .toast.show {
+      visibility: visible;
+      opacity: 1;
+      bottom: 50px;
+    }
+  </style>
 </head>
 <body>
-    <h1>📘 Comandos de Git y GitHub</h1>
 
-    <h2>🧩 Configuración inicial</h2>
-    <table>
-        <tr><th>Comando</th><th>Descripción</th></tr>
-        <tr><td><code>git config --global user.name "Tu Nombre"</code></td><td>Configura tu nombre de usuario globalmente.</td></tr>
-        <tr><td><code>git config --global user.email "tuemail@example.com"</code></td><td>Configura tu correo electrónico globalmente.</td></tr>
-        <tr><td><code>git config --list</code></td><td>Muestra la configuración actual de Git.</td></tr>
-    </table>
+  <h1>💻 Guía de Comandos: Git, Terminal y más</h1>
 
-    <h2>📁 Creación y clonación de repositorios</h2>
-    <table>
-        <tr><th>Comando</th><th>Descripción</th></tr>
-        <tr><td><code>git init</code></td><td>Crea un nuevo repositorio Git en el directorio actual.</td></tr>
-        <tr><td><code>git clone &lt;url&gt;</code></td><td>Clona un repositorio remoto (por ejemplo, desde GitHub).</td></tr>
-    </table>
+  <!-- 🧩 SECCIÓN 1: Git y GitHub -->
+  <h2>📘 Comandos de Git y GitHub</h2>
+  <table>
+    <tr><th>Comando</th><th>Descripción</th></tr>
+    <tr><td data-label="Comando"><code>git init</code><button class="copy-btn" onclick="copyCommand('git init')">Copiar</button></td><td data-label="Descripción">Inicializa un repositorio Git en el directorio actual.</td></tr>
+    <tr><td data-label="Comando"><code>git status</code><button class="copy-btn" onclick="copyCommand('git status')">Copiar</button></td><td data-label="Descripción">Muestra el estado de los archivos (nuevos, modificados, etc.).</td></tr>
+    <tr><td data-label="Comando"><code>git add .</code><button class="copy-btn" onclick="copyCommand('git add .')">Copiar</button></td><td data-label="Descripción">Agrega todos los cambios al área de preparación.</td></tr>
+    <tr><td data-label="Comando"><code>git commit -m "mensaje"</code><button class="copy-btn" onclick="copyCommand('git commit -m \"mensaje\"')">Copiar</button></td><td data-label="Descripción">Crea un commit con un mensaje descriptivo.</td></tr>
+    <tr><td data-label="Comando"><code>git push origin main</code><button class="copy-btn" onclick="copyCommand('git push origin main')">Copiar</button></td><td data-label="Descripción">Sube los cambios a la rama principal del remoto.</td></tr>
+  </table>
 
-    <h2>🧱 Control de versiones (commits)</h2>
-    <table>
-        <tr><th>Comando</th><th>Descripción</th></tr>
-        <tr><td><code>git status</code></td><td>Muestra el estado de los archivos (cambios, no rastreados, etc.).</td></tr>
-        <tr><td><code>git add &lt;archivo&gt;</code></td><td>Añade un archivo al área de preparación (staging).</td></tr>
-        <tr><td><code>git add .</code></td><td>Añade todos los archivos modificados al staging.</td></tr>
-        <tr><td><code>git commit -m "mensaje"</code></td><td>Guarda los cambios con un mensaje.</td></tr>
-        <tr><td><code>git log</code></td><td>Muestra el historial de commits.</td></tr>
-        <tr><td><code>git diff</code></td><td>Muestra las diferencias entre los archivos modificados y los confirmados.</td></tr>
-    </table>
+  <!-- 💻 SECCIÓN 2: Terminal de macOS -->
+  <h2>🧠 Comandos Básicos de la Terminal (macOS / Unix)</h2>
+  <table>
+    <tr><th>Comando</th><th>Descripción</th></tr>
+    <tr><td data-label="Comando"><code>pwd</code><button class="copy-btn" onclick="copyCommand('pwd')">Copiar</button></td><td data-label="Descripción">Muestra el directorio actual (ruta completa).</td></tr>
+    <tr><td data-label="Comando"><code>ls</code><button class="copy-btn" onclick="copyCommand('ls')">Copiar</button></td><td data-label="Descripción">Lista los archivos y carpetas del directorio actual.</td></tr>
+    <tr><td data-label="Comando"><code>cd &lt;carpeta&gt;</code><button class="copy-btn" onclick="copyCommand('cd <carpeta>')">Copiar</button></td><td data-label="Descripción">Cambia al directorio indicado.</td></tr>
+    <tr><td data-label="Comando"><code>mkdir &lt;nombre&gt;</code><button class="copy-btn" onclick="copyCommand('mkdir <nombre>')">Copiar</button></td><td data-label="Descripción">Crea un nuevo directorio.</td></tr>
+    <tr><td data-label="Comando"><code>rm &lt;archivo&gt;</code><button class="copy-btn" onclick="copyCommand('rm <archivo>')">Copiar</button></td><td data-label="Descripción">Elimina un archivo.</td></tr>
+    <tr><td data-label="Comando"><code>rm -rf &lt;carpeta&gt;</code><button class="copy-btn" onclick="copyCommand('rm -rf <carpeta>')">Copiar</button></td><td data-label="Descripción">Elimina una carpeta y todo su contenido (¡cuidado!).</td></tr>
+    <tr><td data-label="Comando"><code>touch &lt;archivo&gt;</code><button class="copy-btn" onclick="copyCommand('touch <archivo>')">Copiar</button></td><td data-label="Descripción">Crea un nuevo archivo vacío.</td></tr>
+    <tr><td data-label="Comando"><code>open .</code><button class="copy-btn" onclick="copyCommand('open .')">Copiar</button></td><td data-label="Descripción">Abre el directorio actual en el Finder.</td></tr>
+    <tr><td data-label="Comando"><code>clear</code><button class="copy-btn" onclick="copyCommand('clear')">Copiar</button></td><td data-label="Descripción">Limpia la pantalla del terminal.</td></tr>
+    <tr><td data-label="Comando"><code>whoami</code><button class="copy-btn" onclick="copyCommand('whoami')">Copiar</button></td><td data-label="Descripción">Muestra el nombre del usuario actual.</td></tr>
+  </table>
 
-    <h2>🌿 Ramas (branches)</h2>
-    <table>
-        <tr><th>Comando</th><th>Descripción</th></tr>
-        <tr><td><code>git branch</code></td><td>Muestra todas las ramas locales.</td></tr>
-        <tr><td><code>git branch &lt;nombre&gt;</code></td><td>Crea una nueva rama.</td></tr>
-        <tr><td><code>git checkout &lt;nombre&gt;</code></td><td>Cambia a otra rama.</td></tr>
-        <tr><td><code>git checkout -b &lt;nombre&gt;</code></td><td>Crea y cambia a una nueva rama.</td></tr>
-        <tr><td><code>git merge &lt;rama&gt;</code></td><td>Fusiona una rama con la actual.</td></tr>
-        <tr><td><code>git branch -d &lt;nombre&gt;</code></td><td>Elimina una rama.</td></tr>
-    </table>
+  <footer>
+    <p>📄 Hecho con ❤️ por ChatGPT — Guía de comandos interactiva y responsive</p>
+  </footer>
 
-    <h2>🌐 Repositorios remotos (GitHub)</h2>
-    <table>
-        <tr><th>Comando</th><th>Descripción</th></tr>
-        <tr><td><code>git remote -v</code></td><td>Lista los repositorios remotos conectados.</td></tr>
-        <tr><td><code>git remote add origin &lt;url&gt;</code></td><td>Conecta el repositorio local con uno remoto (GitHub).</td></tr>
-        <tr><td><code>git push -u origin main</code></td><td>Sube la rama principal al remoto por primera vez.</td></tr>
-        <tr><td><code>git push</code></td><td>Sube los cambios al repositorio remoto.</td></tr>
-        <tr><td><code>git pull</code></td><td>Descarga y fusiona los cambios del remoto.</td></tr>
-        <tr><td><code>git fetch</code></td><td>Descarga cambios sin fusionarlos todavía.</td></tr>
-    </table>
+  <div id="toast" class="toast">✅ Comando copiado</div>
 
-    <h2>🧹 Deshacer y limpiar</h2>
-    <table>
-        <tr><th>Comando</th><th>Descripción</th></tr>
-        <tr><td><code>git reset &lt;archivo&gt;</code></td><td>Quita un archivo del área de preparación.</td></tr>
-        <tr><td><code>git reset --hard</code></td><td>Revierte todos los cambios al último commit.</td></tr>
-        <tr><td><code>git checkout -- &lt;archivo&gt;</code></td><td>Descarta cambios locales en un archivo.</td></tr>
-        <tr><td><code>git revert &lt;commit&gt;</code></td><td>Crea un nuevo commit que revierte un commit anterior.</td></tr>
-    </table>
+  <script>
+    function copyCommand(command) {
+      navigator.clipboard.writeText(command).then(() => {
+        showToast("✅ Comando copiado al portapapeles");
+      });
+    }
 
-    <h2>🧠 Otros útiles</h2>
-    <table>
-        <tr><th>Comando</th><th>Descripción</th></tr>
-        <tr><td><code>git stash</code></td><td>Guarda temporalmente cambios no confirmados.</td></tr>
-        <tr><td><code>git stash pop</code></td><td>Restaura los cambios guardados.</td></tr>
-        <tr><td><code>git tag &lt;nombre&gt;</code></td><td>Crea una etiqueta (por ejemplo, para versiones).</td></tr>
-        <tr><td><code>git show &lt;commit&gt;</code></td><td>Muestra los detalles de un commit.</td></tr>
-    </table>
-
-    <footer>
-        <p>📄 Hecho con ❤️ por ChatGPT — Guía básica de comandos Git/GitHub</p>
-    </footer>
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2000);
+    }
+  </script>
 </body>
 </html>
