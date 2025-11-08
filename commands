@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comandos de Git y GitHub</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 40px;
+        }
+        h1, h2 {
+            color: #0052cc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #e1ecf4;
+            color: #003366;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>📘 Comandos de Git y GitHub</h1>
+
+    <h2>🧩 Configuración inicial</h2>
+    <table>
+        <tr><th>Comando</th><th>Descripción</th></tr>
+        <tr><td><code>git config --global user.name "Tu Nombre"</code></td><td>Configura tu nombre de usuario globalmente.</td></tr>
+        <tr><td><code>git config --global user.email "tuemail@example.com"</code></td><td>Configura tu correo electrónico globalmente.</td></tr>
+        <tr><td><code>git config --list</code></td><td>Muestra la configuración actual de Git.</td></tr>
+    </table>
+
+    <h2>📁 Creación y clonación de repositorios</h2>
+    <table>
+        <tr><th>Comando</th><th>Descripción</th></tr>
+        <tr><td><code>git init</code></td><td>Crea un nuevo repositorio Git en el directorio actual.</td></tr>
+        <tr><td><code>git clone &lt;url&gt;</code></td><td>Clona un repositorio remoto (por ejemplo, desde GitHub).</td></tr>
+    </table>
+
+    <h2>🧱 Control de versiones (commits)</h2>
+    <table>
+        <tr><th>Comando</th><th>Descripción</th></tr>
+        <tr><td><code>git status</code></td><td>Muestra el estado de los archivos (cambios, no rastreados, etc.).</td></tr>
+        <tr><td><code>git add &lt;archivo&gt;</code></td><td>Añade un archivo al área de preparación (staging).</td></tr>
+        <tr><td><code>git add .</code></td><td>Añade todos los archivos modificados al staging.</td></tr>
+        <tr><td><code>git commit -m "mensaje"</code></td><td>Guarda los cambios con un mensaje.</td></tr>
+        <tr><td><code>git log</code></td><td>Muestra el historial de commits.</td></tr>
+        <tr><td><code>git diff</code></td><td>Muestra las diferencias entre los archivos modificados y los confirmados.</td></tr>
+    </table>
+
+    <h2>🌿 Ramas (branches)</h2>
+    <table>
+        <tr><th>Comando</th><th>Descripción</th></tr>
+        <tr><td><code>git branch</code></td><td>Muestra todas las ramas locales.</td></tr>
+        <tr><td><code>git branch &lt;nombre&gt;</code></td><td>Crea una nueva rama.</td></tr>
+        <tr><td><code>git checkout &lt;nombre&gt;</code></td><td>Cambia a otra rama.</td></tr>
+        <tr><td><code>git checkout -b &lt;nombre&gt;</code></td><td>Crea y cambia a una nueva rama.</td></tr>
+        <tr><td><code>git merge &lt;rama&gt;</code></td><td>Fusiona una rama con la actual.</td></tr>
+        <tr><td><code>git branch -d &lt;nombre&gt;</code></td><td>Elimina una rama.</td></tr>
+    </table>
+
+    <h2>🌐 Repositorios remotos (GitHub)</h2>
+    <table>
+        <tr><th>Comando</th><th>Descripción</th></tr>
+        <tr><td><code>git remote -v</code></td><td>Lista los repositorios remotos conectados.</td></tr>
+        <tr><td><code>git remote add origin &lt;url&gt;</code></td><td>Conecta el repositorio local con uno remoto (GitHub).</td></tr>
+        <tr><td><code>git push -u origin main</code></td><td>Sube la rama principal al remoto por primera vez.</td></tr>
+        <tr><td><code>git push</code></td><td>Sube los cambios al repositorio remoto.</td></tr>
+        <tr><td><code>git pull</code></td><td>Descarga y fusiona los cambios del remoto.</td></tr>
+        <tr><td><code>git fetch</code></td><td>Descarga cambios sin fusionarlos todavía.</td></tr>
+    </table>
+
+    <h2>🧹 Deshacer y limpiar</h2>
+    <table>
+        <tr><th>Comando</th><th>Descripción</th></tr>
+        <tr><td><code>git reset &lt;archivo&gt;</code></td><td>Quita un archivo del área de preparación.</td></tr>
+        <tr><td><code>git reset --hard</code></td><td>Revierte todos los cambios al último commit.</td></tr>
+        <tr><td><code>git checkout -- &lt;archivo&gt;</code></td><td>Descarta cambios locales en un archivo.</td></tr>
+        <tr><td><code>git revert &lt;commit&gt;</code></td><td>Crea un nuevo commit que revierte un commit anterior.</td></tr>
+    </table>
+
+    <h2>🧠 Otros útiles</h2>
+    <table>
+        <tr><th>Comando</th><th>Descripción</th></tr>
+        <tr><td><code>git stash</code></td><td>Guarda temporalmente cambios no confirmados.</td></tr>
+        <tr><td><code>git stash pop</code></td><td>Restaura los cambios guardados.</td></tr>
+        <tr><td><code>git tag &lt;nombre&gt;</code></td><td>Crea una etiqueta (por ejemplo, para versiones).</td></tr>
+        <tr><td><code>git show &lt;commit&gt;</code></td><td>Muestra los detalles de un commit.</td></tr>
+    </table>
+
+    <footer>
+        <p>📄 Hecho con ❤️ por ChatGPT — Guía básica de comandos Git/GitHub</p>
+    </footer>
+</body>
+</html>
